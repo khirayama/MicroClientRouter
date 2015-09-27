@@ -1,8 +1,8 @@
 {
-  "name": "micro-router",
+  "name": "micro-client-router",
   "version": "0.1.0",
-  "description": "micro router in es6 for client.",
-  "main": "lib/MicroRouter.js",
+  "description": "micro client router in es6 for client.",
+  "main": "lib/MicroClientRouter.js",
   "files": [
     "lib"
   ],
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/khirayama/MicroRouter.git"
+    "url": "git+https://github.com/khirayama/MicroClientRouter.git"
   },
   "keywords": [
     "router"
@@ -20,9 +20,9 @@
   "author": "khirayama",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/khirayama/MicroRouter/issues"
+    "url": "https://github.com/khirayama/MicroClientRouter/issues"
   },
-  "homepage": "https://github.com/khirayama/MicroRouter#readme",
+  "homepage": "https://github.com/khirayama/MicroClientRouter#readme",
   "devDependencies": {
     "babel": "^5.8.23"
   },
