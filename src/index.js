@@ -100,3 +100,32 @@ export function exec(regexp, path) {
   matches.params = params;
   return matches;
 }
+
+export default class Router {
+  constructor() {
+    this._routes = [];
+  }
+
+  route(path, callback) {
+    let regexp = pathToRegexp(path);
+    this._routes.push({ regexp, callback });
+    return this;
+  }
+
+  emit(path) {
+    this._routes.forEach((route) => {
+      let matches = exec(route.regexp, path);
+      if (matches) {
+        route.callback(matches.params);
+      }
+    });
+  }
+}
+
+let router = new Router();
+
+router.route('/posts/:id', ({ id }) => {
+  console.log(id[0]);
+});
+router.emit('/post/100');
+router.emit('/posts/100');
