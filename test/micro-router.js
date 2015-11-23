@@ -1,10 +1,31 @@
 import assert from 'power-assert';
 import MicroRouter, { parse, tokensToRegexp, pathToRegexp, exec } from '../src/';
+console.log(MicroRouter);
 
 describe('MicroRouter', () => {
-  // beforeEach(() => {
-  //   pathToRegexp('/posts/:id');
-  // });
+
+  describe('Router', () => {
+    let router;
+    let routes;
+
+    beforeEach(() => {
+      router = new MicroRouter();
+      router.route('/posts/:id', ({ id }) => {
+        console.log(id[0]);
+      });
+      routes = router._routes;
+    });
+    describe('route', () => {
+      it('register', () => {
+        assert(routes.length === 1);
+      });
+    });
+    describe('emit', () => {
+      // router.emit('/post/100');
+      // router.emit('/posts/100');
+    });
+  });
+
   describe('parse', () => {
     it('posts', () => {
       let tokens = parse('/posts');

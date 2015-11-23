@@ -101,7 +101,7 @@ export function exec(regexp, path) {
   return matches;
 }
 
-export default class Router {
+export default class MicroRouter {
   constructor() {
     this._routes = [];
   }
@@ -121,11 +121,3 @@ export default class Router {
     });
   }
 }
-
-let router = new Router();
-
-router.route('/posts/:id', ({ id }) => {
-  console.log(id[0]);
-});
-router.emit('/post/100');
-router.emit('/posts/100');
