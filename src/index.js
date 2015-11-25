@@ -101,6 +101,7 @@ export function exec(regexp, path) {
   return matches;
 }
 
+// TODO: support service worker
 export default class MicroRouter {
   constructor() {
     this._routes = [];

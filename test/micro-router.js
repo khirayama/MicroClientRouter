@@ -22,7 +22,7 @@ describe('MicroRouter', () => {
     });
     describe('emit', () => {
       // router.emit('/post/100');
-      // router.emit('/posts/100');
+      router.emit('/posts/100');
     });
   });
 
