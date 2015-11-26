@@ -7,11 +7,16 @@ describe('MicroRouter', () => {
   describe('Router', () => {
     let router;
     let routes;
+    let count = 0;
+    let countUp = () => {
+      count += 1;
+    };
 
     beforeEach(() => {
+      count = 0;
       router = new MicroRouter();
       router.route('/posts/:id', ({ id }) => {
-        console.log(id[0]);
+        countUp();
       });
       routes = router._routes;
     });
@@ -21,8 +26,12 @@ describe('MicroRouter', () => {
       });
     });
     describe('emit', () => {
-      // router.emit('/post/100');
-      router.emit('/posts/100');
+      it('emit', () => {
+        assert(routes.length === 1);
+        // router.emit('/post/100');
+        router.emit('/posts/100');
+        assert(count === 1);
+      });
     });
   });
 
