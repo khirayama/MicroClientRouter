@@ -110,6 +110,7 @@ export default class MicroRouter {
   route(path, callback) {
     let regexp = pathToRegexp(path);
     this._routes.push({ regexp, callback });
+
     return this;
   }
 
