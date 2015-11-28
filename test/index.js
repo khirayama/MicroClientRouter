@@ -1,7 +1,7 @@
 import assert from 'power-assert';
-import MicroRouter, { parse, tokensToRegexp, pathToRegexp, exec } from '../src/';
+import MicroClientRouter, { parse, tokensToRegexp, pathToRegexp, exec } from '../src/';
 
-describe('MicroRouter', () => {
+describe('MicroClientRouter', () => {
 
   describe('Router', () => {
     let router;

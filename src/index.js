@@ -1,3 +1,68 @@
+export default class MicroClientRouter {
+  constructor(options = {}) {
+    this._routes = [];
+
+    if (options.onload) {
+      this.setLoadHandlers();
+    }
+    if (options.onpopstate) {
+      this.setPopStateHandlers();
+    }
+  }
+
+  route(path, callback) {
+    let regexp = pathToRegexp(path);
+    this._routes.push({ regexp, callback });
+
+    return this;
+  }
+
+  emit(path) {
+    this._routes.forEach((route) => {
+      let matches = exec(route.regexp, path);
+      if (matches) {
+        route.callback(matches.params);
+      }
+    });
+  }
+
+  setLoadHandlers() {
+    window.addEventListener('load', () => {
+      this.emit(location.pathname);
+    });
+  }
+
+  setPopStateHandlers() {
+    window.addEventListener('popstate', () => {
+      this.emit(location.pathname);
+    });
+  }
+
+  pushState(state = null, title = null, url) {
+    history.pushState(state, title, url);
+    this.emit(url);
+  }
+
+  // support service worker
+  // register(path, scope) {
+  //   console.log(path, scope);
+  //   navigator.serviceWorker.register(path, { scope: scope })
+  //   .then((r) => {
+  //     console.log('registered: ', r);
+  //   })
+  //   .catch((whut) => {
+  //     console.error('uh oh... ', whut);
+  //   });
+  // }
+  //
+  // unregister() {
+  //   registration.unregister()
+  //   .then(function() {
+  //     console.log('unregistered');
+  //   });
+  // }
+}
+
 const PATH_REGEXP = new RegExp([
   '(\\\\.)',
   '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^()])+)\\))?|\\(((?:\\\\.|[^()])+)\\))([+*?])?|(\\*))',
@@ -99,27 +164,4 @@ export function exec(regexp, path) {
 
   matches.params = params;
   return matches;
-}
-
-// TODO: support service worker
-export default class MicroRouter {
-  constructor() {
-    this._routes = [];
-  }
-
-  route(path, callback) {
-    let regexp = pathToRegexp(path);
-    this._routes.push({ regexp, callback });
-
-    return this;
-  }
-
-  emit(path) {
-    this._routes.forEach((route) => {
-      let matches = exec(route.regexp, path);
-      if (matches) {
-        route.callback(matches.params);
-      }
-    });
-  }
 }
