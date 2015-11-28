@@ -1,8 +1,8 @@
 {
-  "name": "micro-emitter",
-  "version": "1.0.6",
-  "description": "micro event emitter in es6.",
-  "main": "lib/MicroEmitter.js",
+  "name": "micro-client-router",
+  "version": "0.0.1",
+  "description": "micro client router in es6.",
+  "main": "lib/index.js",
   "files": [
     "lib"
   ],
@@ -14,26 +14,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/khirayama/MicroEmitter.git"
+    "url": "git+https://github.com/khirayama/micro-client-router.git"
   },
   "eslintConfig": {
     "extends": "airbnb"
   },
   "keywords": [
-    "eventemitter",
-    "emitter",
-    "event",
-    "events",
-    "browser",
-    "flux",
-    "react"
+    "router",
+    "single page application"
   ],
   "author": "khirayama",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/khirayama/MicroEmitter/issues"
+    "url": "https://github.com/khirayama/micro-client-router/issues"
   },
-  "homepage": "https://github.com/khirayama/MicroEmitter#readme",
+  "homepage": "https://github.com/khirayama/micro-client-router#readme",
   "devDependencies": {
     "babel": "^6.1.18",
     "babel-eslint": "^4.1.5",
