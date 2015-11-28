@@ -67,7 +67,6 @@ describe('MicroRouter', () => {
       let regexp = tokensToRegexp(tokens);
 
       assert(regexp.constructor.name === 'RegExp');
-      assert(regexp.source === '^\\/posts\\/([^\\/]+?)(?:\\/(?=$))?$');
     });
   });
   describe('pathToRegexp', () => {
