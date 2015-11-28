@@ -3,10 +3,10 @@ export default class MicroClientRouter {
     this._routes = [];
 
     if (options.onload) {
-      this.setLoadHandlers();
+      this.setLoadHandler();
     }
     if (options.onpopstate) {
-      this.setPopStateHandlers();
+      this.setPopStateHandler();
     }
   }
 
@@ -26,21 +26,21 @@ export default class MicroClientRouter {
     });
   }
 
-  setLoadHandlers() {
+  pushState(state = null, title = null, url) {
+    history.pushState(state, title, url);
+    this.emit(url);
+  }
+
+  setLoadHandler() {
     window.addEventListener('load', () => {
       this.emit(location.pathname);
     });
   }
 
-  setPopStateHandlers() {
+  setPopStateHandler() {
     window.addEventListener('popstate', () => {
       this.emit(location.pathname);
     });
-  }
-
-  pushState(state = null, title = null, url) {
-    history.pushState(state, title, url);
-    this.emit(url);
   }
 
   // support service worker

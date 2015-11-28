@@ -17,15 +17,24 @@ import MicroClientRouter from 'micro-client-router';
 ```
 
 ## API
-It has 2 API only.
+It has 5 API only.
 
 - route
 - emit
+- pushState
+- setLoadHandler
+- setPopStateHandler
 
 
 ### route
 
 ### emit
+
+### pushState
+
+### setLoadHandler
+
+### setPopStateHandler
 
 ## Example
 
