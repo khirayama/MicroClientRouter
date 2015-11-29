@@ -44,16 +44,16 @@ export default class MicroClientRouter {
   }
 
   // support service worker
-  // register(path, scope) {
-  //   console.log(path, scope);
-  //   navigator.serviceWorker.register(path, { scope: scope })
-  //   .then((r) => {
-  //     console.log('registered: ', r);
-  //   })
-  //   .catch((whut) => {
-  //     console.error('uh oh... ', whut);
-  //   });
-  // }
+  register(path, scope) {
+    console.log(path, scope);
+    navigator.serviceWorker.register(path, { scope: scope })
+    .then((r) => {
+      console.log('registered: ', r);
+    })
+    .catch((whut) => {
+      console.error('uh oh... ', whut);
+    });
+  }
   //
   // unregister() {
   //   registration.unregister()
