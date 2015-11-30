@@ -31,14 +31,20 @@ export default class MicroClientRouter {
     this.emit(url);
   }
 
-  setLoadHandler() {
+  setLoadHandler(callback) {
     window.addEventListener('load', () => {
+      if(callback) {
+        callback();
+      }
       this.emit(location.pathname);
     });
   }
 
-  setPopStateHandler() {
+  setPopStateHandler(callback) {
     window.addEventListener('popstate', () => {
+      if(callback) {
+        callback();
+      }
       this.emit(location.pathname);
     });
   }
