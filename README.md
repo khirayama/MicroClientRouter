@@ -4,7 +4,7 @@
 micro client router in es6.
 
 ## Motivation
-Somehow.
+I want to make a router without dependencies.
 
 ## Getting Started
 
@@ -19,22 +19,95 @@ import MicroClientRouter from 'micro-client-router';
 ## API
 It has 5 API only.
 
+Basic API
 - route
 - emit
+
+Support API
 - pushState
 - setLoadHandler
 - setPopStateHandler
 
+### initialize
+
+```javascript
+let router = new MicroClientRouter();
+```
+
+if you want to emit when load/popstate events.
+(use pushState method, you want to emit when pushstate events.)
+
+```javascript
+let router = new MicroClientRouter({ onload: true, onpopstate: true });
+```
 
 ### route
 
+```javascript
+router.route('/posts', () => {
+  // do somethong.
+});
+router.route('/posts/:id', ({ id }) => {
+  // do somethong.
+});
+```
+
 ### emit
+
+```javascript
+router.route('/posts/:id', (id) => {
+  console.log(id); // 100
+});
+
+route.emit('/posts/100');
+```
 
 ### pushState
 
+```javascript
+let $link = document.querySelector('a');
+
+$link.addEventListener('click', (event) => {
+  let url = event.target.href;
+  route.pushState(null, null, url); // change url and run callback seted by route.
+});
+```
+
 ### setLoadHandler
+
+```javascript
+route.setLoadHandler(() => {
+  console.log('call this when onload.');
+});
+```
 
 ### setPopStateHandler
 
-## Example
+```javascript
+route.setLoadHandler(() => {
+  console.log('call this when onpopstate.');
+});
+```
 
+## Examples
+
+```javascript
+import MicroClientRouter from 'micro-client-router';
+
+let router = new MicroClientRouter({ onload: true, onpopstate: true });
+
+router.route('/posts', () => {
+  // show posts.
+});
+
+router.route('/posts/:id', (id) => {
+  // show a post.
+});
+
+let $link = document.querySelector('a');
+
+$link.addEventListener('click', (event) => {
+  let url = event.target.href;
+  route.pushState(null, null, url); // change url and run callback seted by route.
+});
+```
