@@ -8,7 +8,7 @@ describe('MicroClientRouter', () => {
     let routes;
 
     beforeEach(() => {
-      router = new MicroRouter();
+      router = new MicroClientRouter();
       routes = router._routes;
     });
     describe('route', () => {
