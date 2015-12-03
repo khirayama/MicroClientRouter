@@ -27,6 +27,13 @@ describe('MicroClientRouter', () => {
         router.emit('/posts/100');
         assert(routes.length === 1);
       });
+      it('emit', () => {
+        router.route('/posts/:id', ({ id }) => {
+        });
+        router.emit('/post/100');
+        assert(routes.length === 1);
+        // TODO: ensure not to run callback
+      });
     });
   });
 
