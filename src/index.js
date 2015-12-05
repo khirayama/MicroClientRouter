@@ -1,55 +1,3 @@
-export default class MicroClientRouter {
-  constructor(options = {}) {
-    this._routes = [];
-
-    if (options.onload) {
-      this.setLoadHandler();
-    }
-    if (options.onpopstate) {
-      this.setPopStateHandler();
-    }
-  }
-
-  route(path, callback) {
-    let regexp = pathToRegexp(path);
-    this._routes.push({ regexp, callback });
-
-    return this;
-  }
-
-  emit(path) {
-    this._routes.forEach((route) => {
-      let matches = exec(route.regexp, path);
-      if (matches) {
-        route.callback(matches.params);
-      }
-    });
-  }
-
-  pushState(state = null, title = null, url) {
-    history.pushState(state, title, url);
-    this.emit(url);
-  }
-
-  setLoadHandler(callback) {
-    window.addEventListener('load', () => {
-      if(callback) {
-        callback();
-      }
-      this.emit(location.pathname);
-    });
-  }
-
-  setPopStateHandler(callback) {
-    window.addEventListener('popstate', () => {
-      if(callback) {
-        callback();
-      }
-      this.emit(location.pathname);
-    });
-  }
-}
-
 const PATH_REGEXP = new RegExp([
   '(\\\\.)',
   '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^()])+)\\))?|\\(((?:\\\\.|[^()])+)\\))([+*?])?|(\\*))',
@@ -151,4 +99,56 @@ export function exec(regexp, path) {
 
   matches.params = params;
   return matches;
+}
+
+export default class MicroClientRouter {
+  constructor(options = {}) {
+    this._routes = [];
+
+    if (options.onload) {
+      this.setLoadHandler();
+    }
+    if (options.onpopstate) {
+      this.setPopStateHandler();
+    }
+  }
+
+  route(path, callback) {
+    const regexp = pathToRegexp(path);
+    this._routes.push({ regexp, callback });
+
+    return this;
+  }
+
+  emit(path) {
+    this._routes.forEach((route) => {
+      const matches = exec(route.regexp, path);
+      if (matches) {
+        route.callback(matches.params);
+      }
+    });
+  }
+
+  pushState(state = null, title = null, url) {
+    history.pushState(state, title, url);
+    this.emit(url);
+  }
+
+  setLoadHandler(callback) {
+    window.addEventListener('load', () => {
+      if (callback) {
+        callback();
+      }
+      this.emit(location.pathname);
+    });
+  }
+
+  setPopStateHandler(callback) {
+    window.addEventListener('popstate', () => {
+      if (callback) {
+        callback();
+      }
+      this.emit(location.pathname);
+    });
+  }
 }
