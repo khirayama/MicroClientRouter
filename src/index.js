@@ -114,7 +114,7 @@ export default class MicroClientRouter {
   }
 
   route(path, callback) {
-    let regexp = pathToRegexp(path);
+    const regexp = pathToRegexp(path);
     this._routes.push({ regexp, callback });
 
     return this;
@@ -122,7 +122,7 @@ export default class MicroClientRouter {
 
   emit(path) {
     this._routes.forEach((route) => {
-      let matches = exec(route.regexp, path);
+      const matches = exec(route.regexp, path);
       if (matches) {
         route.callback(matches.params);
       }
@@ -136,7 +136,7 @@ export default class MicroClientRouter {
 
   setLoadHandler(callback) {
     window.addEventListener('load', () => {
-      if(callback) {
+      if (callback) {
         callback();
       }
       this.emit(location.pathname);
@@ -145,7 +145,7 @@ export default class MicroClientRouter {
 
   setPopStateHandler(callback) {
     window.addEventListener('popstate', () => {
-      if(callback) {
+      if (callback) {
         callback();
       }
       this.emit(location.pathname);
