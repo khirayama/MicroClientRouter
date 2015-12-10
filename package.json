@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build": "babel src --out-dir lib --source-maps-inline",
-    "build:client": "npm run build && browserify lib/index.js -o micro-client-router.js",
+    "build:client": "npm run build && browserify -r ./lib/index.js -o micro-client-router.js",
     "watch": "babel src --out-dir lib --watch --source-maps-inline",
     "lint": "eslint ./src --ext=js",
     "test": "mocha --compilers js:espower-babel/guess test/**/*.js"

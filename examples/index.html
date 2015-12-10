@@ -1,7 +1,27 @@
 <html>
   <head>
+    <script src="../micro-client-router.js" defer></script>
   </head>
   <body>
     <h1>Micro client router example</h1>
+    <a href="/posts/100">100: title</a>
+    <script>
+      window.onload = function () {
+        var MicroClientRouter = require('/lib/index.js').default;
+        var router = new MicroClientRouter();
+
+        router.route('/posts/:id', function (params) {
+          console.log(params.id);
+        });
+
+        var atag = document.querySelector('a');
+        atag.addEventListener('click', function (event) {
+          event.preventDefault();
+          var pathname = event.target.pathname;
+          console.log(pathname);
+          router.pushState(null, 'Micro client router', pathname);
+        });
+      };
+    </script>
   </body>
 </html>
