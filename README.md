@@ -16,6 +16,10 @@ $ npm install micro-clinet-router
 import MicroClientRouter from 'micro-client-router';
 ```
 
+```html
+<script src="micro-client-router.js"></script>
+```
+
 ## API
 It has 5 API only.
 
